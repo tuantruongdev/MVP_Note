@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MVP Note</string>
+    <string name="app_title">Notes</string>
+    <string name="search_hint">Search your notes</string>
+</resources>
