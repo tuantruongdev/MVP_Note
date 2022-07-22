@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_dark"
     android:orientation="vertical"
     tools:context=".ui.editor.EditActivity">
@@ -15,12 +16,16 @@
         android:layout_marginTop="@dimen/margin_horizontal_small"
         android:layout_marginRight="@dimen/margin_horizontal_medium">
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back"
-            android:layout_width="@dimen/edit_icon_size"
-            android:layout_height="@dimen/edit_icon_size"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bg_dark"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:rippleColor="@color/faded_gray"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24"
+            app:tint="@color/white" />
 
 
         <LinearLayout
@@ -28,17 +33,44 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true">
-            <ImageView
-                android:layout_marginRight="@dimen/margin_horizontal_medium"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/removeNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:backgroundTint="@color/bg_dark"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/faded_gray"
+                app:srcCompat="@drawable/ic_baseline_restore_from_trash_24"
+                app:tint="@color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/imageIcon"
-                android:layout_width="@dimen/edit_icon_size"
-                android:layout_height="@dimen/edit_icon_size"
-                android:src="@drawable/ic_baseline_image_24" />
-            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/margin_medium"
+
+                android:backgroundTint="@color/bg_dark"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/faded_gray"
+                app:srcCompat="@drawable/ic_baseline_image_24"
+                app:tint="@color/white" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/done"
-                android:layout_width="@dimen/edit_icon_size"
-                android:layout_height="@dimen/edit_icon_size"
-                android:src="@drawable/ic_baseline_done_24" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:backgroundTint="@color/bg_dark"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/faded_gray"
+                app:srcCompat="@drawable/ic_baseline_done_24"
+                app:tint="@color/white" />
 
         </LinearLayout>
     </RelativeLayout>

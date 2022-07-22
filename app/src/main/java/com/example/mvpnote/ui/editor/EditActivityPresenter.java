@@ -18,7 +18,7 @@ import pl.aprilapps.easyphotopicker.MediaFile;
 public class EditActivityPresenter implements IEditActivityPresenter {
     IEditActivityView iEditActivityView;
     Database db;
-    private ArrayList<MediaFile> photos = new ArrayList<>();
+    ArrayList<MediaFile> photos = new ArrayList<>();
 
     public EditActivityPresenter(IEditActivityView iEditActivityView) {
         this.iEditActivityView = iEditActivityView;
@@ -53,6 +53,16 @@ public class EditActivityPresenter implements IEditActivityPresenter {
             iEditActivityView.closeActivity();
         }
         Log.d(TAG, "onSaveClicked: " + note.getImageUrl());
+    }
+
+    @Override
+    public void onDeleteClicked(Note note) {
+        if (note.getId()==0){
+            iEditActivityView.showToast("you not saved yet");
+            return;
+        }
+        db.noteDao().deleteNote(note);
+        iEditActivityView.closeActivity();
     }
 
     private void saveToDB(Note note) {

@@ -11,4 +11,6 @@ public interface IEditActivityPresenter {
     void onBackClicked(Note note);
 
     void onSaveClicked(Note note);
+
+    void onDeleteClicked(Note note);
 }

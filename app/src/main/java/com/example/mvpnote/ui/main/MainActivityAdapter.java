@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * Created by macos on 19,July,2022
  */
 public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<Note> notes, storedNotes;
+    ArrayList<Note> notes, storedNotes;
 
     @NonNull
     @Override
@@ -65,8 +65,13 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             mHolder.noteDes.setText(limitCharacter(note.getDescription(), 256));
             mHolder.noteTime.setText(note.toDuration());
             mHolder.noteTag.setText("Coding");
+            
             mHolder.setItemClickListener((view, position1, isLongClick) -> {
                 Log.d(TAG, "click: ");
+                if (isLongClick){
+                    Log.d(TAG, "onBindViewHolder: long click");
+                    
+                }
                 new EditActivity().starter(view.getContext(), note);
             });
         }
@@ -123,7 +128,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void onItemClick(View view, int position, boolean isLongClick);
     }
 
-    public class NoteImgViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class NoteImgViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView noteTitle, noteDes, noteTag, noteTime;
         ImageView noteImg;
         private ItemClickListener itemClickListener;
@@ -136,6 +141,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             noteTime = itemView.findViewById(R.id.note_time);
             noteImg = itemView.findViewById(R.id.note_img);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -146,9 +152,15 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public void setItemClickListener(ItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            this.itemClickListener.onItemClick(v, getAdapterPosition(), true);
+            return true;
+        }
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
         TextView noteTitle, noteDes, noteTag, noteTime;
         private ItemClickListener itemClickListener;
 
@@ -159,16 +171,25 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             noteTag = itemView.findViewById(R.id.note_tag);
             noteTime = itemView.findViewById(R.id.note_time);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
+
 
         @Override
         public void onClick(View v) {
             this.itemClickListener.onItemClick(v, getAdapterPosition(), false);
         }
+        @Override
+        public boolean onLongClick(View v) {
+            this.itemClickListener.onItemClick(v, getAdapterPosition(), true);
+            return true;
+        }
 
         public void setItemClickListener(ItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
         }
+
+
     }
 
 }

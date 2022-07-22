@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.example.mvpnote.R;
 import com.example.mvpnote.data.db.Database;
 import com.example.mvpnote.data.db.model.Note;
 import com.example.mvpnote.utils.Const;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -40,10 +42,11 @@ import pl.aprilapps.easyphotopicker.MediaSource;
 public class EditActivity extends AppCompatActivity implements IEditActivityView, EasyImage.EasyImageStateHandler {
     EasyImage easyImage;
     EditText title, desc;
-    ImageView done, back, addImage, noteImage;
+    FloatingActionButton delete,done, back, addImage;
+    ImageView noteImage;
     EditActivityPresenter editActivityPresenter;
 
-    private Bundle easyImageState = new Bundle();
+    Bundle easyImageState = new Bundle();
 
     public void starter(Context context, Note note) {
         Intent intent = new Intent(context, EditActivity.class);
@@ -66,6 +69,7 @@ public class EditActivity extends AppCompatActivity implements IEditActivityView
         desc = findViewById(R.id.desc);
         addImage = findViewById(R.id.imageIcon);
         noteImage = findViewById(R.id.noteImg);
+        delete = findViewById(R.id.removeNote);
         title.requestFocus();
 
         editActivityPresenter = new EditActivityPresenter(this);
@@ -199,6 +203,14 @@ public class EditActivity extends AppCompatActivity implements IEditActivityView
         });
 
         addImage.setOnClickListener(v -> editActivityPresenter.onImageButtonClicked());
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Note tempNote = new Note(title.getText().toString(), desc.getText().toString(), "coding", "", new Date());
+                tempNote.setId(getIntent().getIntExtra(Const.Note.ID, 0));
+                editActivityPresenter.onDeleteClicked(tempNote);
+            }
+        });
     }
 
     private void onPhotosReturned(@NonNull MediaFile[] returnedPhotos) {
