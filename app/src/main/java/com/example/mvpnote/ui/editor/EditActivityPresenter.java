@@ -57,7 +57,7 @@ public class EditActivityPresenter implements IEditActivityPresenter {
 
     @Override
     public void onDeleteClicked(Note note) {
-        if (note.getId()==0){
+        if (note.getId() == 0) {
             iEditActivityView.showToast("you not saved yet");
             return;
         }

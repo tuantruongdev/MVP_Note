@@ -42,7 +42,7 @@ import pl.aprilapps.easyphotopicker.MediaSource;
 public class EditActivity extends AppCompatActivity implements IEditActivityView, EasyImage.EasyImageStateHandler {
     EasyImage easyImage;
     EditText title, desc;
-    FloatingActionButton delete,done, back, addImage;
+    FloatingActionButton delete, done, back, addImage;
     ImageView noteImage;
     EditActivityPresenter editActivityPresenter;
 

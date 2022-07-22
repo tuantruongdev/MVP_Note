@@ -65,12 +65,12 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             mHolder.noteDes.setText(limitCharacter(note.getDescription(), 256));
             mHolder.noteTime.setText(note.toDuration());
             mHolder.noteTag.setText("Coding");
-            
+
             mHolder.setItemClickListener((view, position1, isLongClick) -> {
                 Log.d(TAG, "click: ");
-                if (isLongClick){
+                if (isLongClick) {
                     Log.d(TAG, "onBindViewHolder: long click");
-                    
+
                 }
                 new EditActivity().starter(view.getContext(), note);
             });
@@ -160,7 +160,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
+    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView noteTitle, noteDes, noteTag, noteTime;
         private ItemClickListener itemClickListener;
 
@@ -179,6 +179,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public void onClick(View v) {
             this.itemClickListener.onItemClick(v, getAdapterPosition(), false);
         }
+
         @Override
         public boolean onLongClick(View v) {
             this.itemClickListener.onItemClick(v, getAdapterPosition(), true);
