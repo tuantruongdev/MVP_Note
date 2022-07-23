@@ -3,6 +3,7 @@ package com.example.mvpnote.ui.editor;
 
 import static android.content.ContentValues.TAG;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mvpnote.data.db.Database;
@@ -61,18 +62,24 @@ public class EditActivityPresenter implements IEditActivityPresenter {
             iEditActivityView.showToast("you not saved yet");
             return;
         }
-        db.noteDao().deleteNote(note);
+        AsyncTask.execute(() -> {
+            db.noteDao().deleteNote(note);
+        });
         iEditActivityView.closeActivity();
     }
 
     private void saveToDB(Note note) {
         //if this is new note
         if (note.getId() == 0) {
-            db.noteDao().insertNote(note);
+            AsyncTask.execute(() -> {
+                db.noteDao().insertNote(note);
+            });
             Log.d(TAG, "saveToDB: created");
         } else {
             //update with id instead
-            db.noteDao().updateNote(note);
+            AsyncTask.execute(() -> {
+                db.noteDao().updateNote(note);
+            });
             Log.d(TAG, "saveToDB: inserted");
         }
     }

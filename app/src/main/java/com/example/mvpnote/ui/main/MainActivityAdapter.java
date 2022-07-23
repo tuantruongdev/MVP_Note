@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,7 +119,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.notes = notes;
         this.storedNotes = notes;
         //    Log.d(TAG, "setData:" +notes.get(0).getId());
-        notifyDataSetChanged();
+
+        new Handler(Looper.getMainLooper()).post(() -> notifyDataSetChanged());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

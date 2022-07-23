@@ -1,6 +1,12 @@
 package com.example.mvpnote.ui.main;
 
+import static android.content.ContentValues.TAG;
+
+import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -28,15 +34,20 @@ public class MainActivityPresenter implements IMainActivityPresenter {
 
     @Override
     public void getStoredNotes() {
-        ArrayList<Note> notes = new ArrayList<Note>(db.noteDao().getListNote());
-        iMainActivityView.updateNotes(notes);
+        Log.d(TAG, "getStoredNotes: ");
+        AsyncTask.execute(() -> {
+            ArrayList<Note> notes = new ArrayList<Note>(db.noteDao().getListNote());
+            iMainActivityView.updateNotes(notes);
+        });
     }
 
     @Override
     public void searchNotes(String q) {
-        ArrayList<Note> notes = new ArrayList<Note>(db.noteDao().searchNotes("%" + q + "%"));
-        iMainActivityView.updateNotes(notes);
-    }
+        AsyncTask.execute(() -> {
+            ArrayList<Note> notes = new ArrayList<Note>(db.noteDao().searchNotes("%" + q + "%"));
+            iMainActivityView.updateNotes(notes);
+        });
+        }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
