@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, IMainActivityView {
-    RecyclerView recyclerView;
-    MainActivityAdapter mainActivityAdapter;
-    EditText search;
-    FloatingActionButton add;
-    MainActivityPresenter mainActivityPresenter;
+    private RecyclerView recyclerView;
+    private MainActivityAdapter mainActivityAdapter;
+    private EditText search;
+    private FloatingActionButton add;
+    private MainActivityPresenter mainActivityPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

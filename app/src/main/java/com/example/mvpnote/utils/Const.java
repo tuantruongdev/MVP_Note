@@ -31,6 +31,8 @@ public interface Const {
         String DESC = "note_desc";
         String IMG_URL = "note_image_url";
         String ID = "note_id";
+        int TITLE_LIMIT = 128;
+        int DESC_LIMIT = 256;
     }
 
     interface EasyImage {

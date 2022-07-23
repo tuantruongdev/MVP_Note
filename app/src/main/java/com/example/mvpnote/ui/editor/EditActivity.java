@@ -40,13 +40,13 @@ import pl.aprilapps.easyphotopicker.MediaFile;
 import pl.aprilapps.easyphotopicker.MediaSource;
 
 public class EditActivity extends AppCompatActivity implements IEditActivityView, EasyImage.EasyImageStateHandler {
-    EasyImage easyImage;
-    EditText title, desc;
-    FloatingActionButton delete, done, back, addImage;
-    ImageView noteImage;
-    EditActivityPresenter editActivityPresenter;
+    private EasyImage easyImage;
+    private EditText title, desc;
+    private FloatingActionButton delete, done, back, addImage;
+    private ImageView noteImage;
+    private EditActivityPresenter editActivityPresenter;
 
-    Bundle easyImageState = new Bundle();
+    private Bundle easyImageState = new Bundle();
 
     public void starter(Context context, Note note) {
         Intent intent = new Intent(context, EditActivity.class);
@@ -198,18 +198,20 @@ public class EditActivity extends AppCompatActivity implements IEditActivityView
                 imageUrl = editActivityPresenter.getPhotos().get(0).getFile().toString();
             }
             Note tempNote = new Note(title.getText().toString(), desc.getText().toString(), "coding", imageUrl, new Date());
-            tempNote.setId(getIntent().getIntExtra(Const.Note.ID, 0));
-            editActivityPresenter.onSaveClicked(tempNote);
+            int noteId = getIntent().getIntExtra(Const.Note.ID, 0);
+            //no need check for null bcs it has default value
+                tempNote.setId(noteId);
+                editActivityPresenter.onSaveClicked(tempNote);
+
         });
 
         addImage.setOnClickListener(v -> editActivityPresenter.onImageButtonClicked());
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Note tempNote = new Note(title.getText().toString(), desc.getText().toString(), "coding", "", new Date());
-                tempNote.setId(getIntent().getIntExtra(Const.Note.ID, 0));
-                editActivityPresenter.onDeleteClicked(tempNote);
-            }
+        delete.setOnClickListener(v -> {
+            Note tempNote = new Note(title.getText().toString(), desc.getText().toString(), "coding", "", new Date());
+            //no need bsc it have default value
+            int noteId = getIntent().getIntExtra(Const.Note.ID, 0);
+            tempNote.setId(noteId);
+            editActivityPresenter.onDeleteClicked(tempNote);
         });
     }
 
@@ -221,18 +223,34 @@ public class EditActivity extends AppCompatActivity implements IEditActivityView
     }
 
     private void getDataFromIntent() {
+        int noteId;
+        String noteTitle,noteDesc,noteImageUrl;
+        File imgFile;
+
+        noteId = getIntent().getIntExtra(Const.Note.ID, 0);
+        noteTitle = getIntent().getStringExtra(Const.Note.TITLE);
+        noteDesc = getIntent().getStringExtra(Const.Note.DESC);
+        noteImageUrl = getIntent().getStringExtra(Const.Note.IMG_URL);
+
         //check if it from add new or edit
-        if (getIntent().getIntExtra(Const.Note.ID, 0) != 0) {
-            title.setText(getIntent().getStringExtra(Const.Note.TITLE));
-            desc.setText(getIntent().getStringExtra(Const.Note.DESC));
-            Picasso.get().load(new File(Uri.parse(getIntent().getStringExtra(Const.Note.IMG_URL)).getPath()))
-                    .into(noteImage);
+        if (noteId != 0) {
+
+            if (noteTitle ==null || noteDesc ==null|| noteImageUrl ==null){
+                return;
+            }
+            imgFile = new File(Uri.parse(noteImageUrl).getPath());
+            if (imgFile != null){
+                Picasso.get().load(imgFile)
+                        .into(noteImage);
+            }
+            title.setText(noteTitle);
+            desc.setText(noteDesc);
 
             ArrayList<MediaFile> photos = new ArrayList<>();
-            photos.add(new MediaFile(Uri.parse(getIntent().getStringExtra(Const.Note.IMG_URL)), new File(Uri.parse(getIntent().getStringExtra(Const.Note.IMG_URL)).getPath())));
+            photos.add(new MediaFile(Uri.parse(noteImageUrl),imgFile ));
             editActivityPresenter.setPhotos(photos);
 //
-            Log.d(TAG, "getDataFromIntent: " + getIntent().getStringExtra(Const.Note.IMG_URL));
+//            Log.d(TAG, "getDataFromIntent: " + getIntent().getStringExtra(Const.Note.IMG_URL));
         }
 
 

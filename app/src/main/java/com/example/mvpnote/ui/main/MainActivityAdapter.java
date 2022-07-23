@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * Created by macos on 19,July,2022
  */
 public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<Note> notes, storedNotes;
+   private ArrayList<Note> notes, storedNotes;
 
     @NonNull
     @Override
@@ -47,10 +47,16 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Note note = notes.get(position);
         if (holder.getItemViewType() == Const.ViewType.NOTE_TYPE_IMG) {
             NoteImgViewHolder mHolder = (NoteImgViewHolder) holder;
-            mHolder.noteTitle.setText(limitCharacter(note.getTitle(), 64));
-            mHolder.noteDes.setText(limitCharacter(note.getDescription(), 256));
-            Picasso.get().load(new File(Uri.parse(note.getImageUrl()).getPath()))
-                    .into(mHolder.noteImg);
+            mHolder.noteTitle.setText(limitCharacter(note.getTitle(), Const.Note.TITLE_LIMIT));
+            mHolder.noteDes.setText(limitCharacter(note.getDescription(), Const.Note.DESC_LIMIT));
+
+            File img = new File(Uri.parse(note.getImageUrl()).getPath());
+
+            if (img != null) {
+                Picasso.get().load(img)
+                        .into(mHolder.noteImg);
+            }
+
             Log.d(TAG, "onBindViewHolder: " + note.getImageUrl());
             // mHolder.noteImg.setImageResource(R.drawable.dummy_img);
             mHolder.noteTime.setText(note.toDuration());
@@ -61,8 +67,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
         } else {
             NoteViewHolder mHolder = (NoteViewHolder) holder;
-            mHolder.noteTitle.setText(limitCharacter(note.getTitle(), 64));
-            mHolder.noteDes.setText(limitCharacter(note.getDescription(), 256));
+            mHolder.noteTitle.setText(limitCharacter(note.getTitle(), Const.Note.TITLE_LIMIT));
+            mHolder.noteDes.setText(limitCharacter(note.getDescription(), Const.Note.DESC_LIMIT));
             mHolder.noteTime.setText(note.toDuration());
             mHolder.noteTag.setText("Coding");
 

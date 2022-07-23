@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@color/bg_dark"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_horizontal_small"
         android:layout_marginLeft="@dimen/margin_horizontal_medium"
-        android:layout_marginRight="@dimen/margin_horizontal_medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginRight="@dimen/margin_horizontal_medium">
 
         <TextView
-            android:layout_marginLeft="@dimen/margin_horizontal_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_horizontal_small"
             android:text="@string/app_title"
             android:textColor="@color/white"
             android:textSize="@dimen/app_text_size_title"
@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/margin_medium"
-
             android:backgroundTint="@color/bg_dark"
             app:borderWidth="0dp"
             app:fabSize="mini"
@@ -41,55 +40,54 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_marginLeft="@dimen/margin_horizontal_medium"
-        android:layout_marginRight="@dimen/margin_horizontal_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_horizontal_medium"
+        android:layout_marginRight="@dimen/margin_horizontal_medium"
         app:cardCornerRadius="@dimen/search_corner_radius">
-    <LinearLayout
-        android:background="@color/bg_dark_lighter"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/search_layout_height">
-        <ImageView
-            android:src="@drawable/ic_baseline_align_horizontal_right_24"
-            android:layout_width="@dimen/drawable_icon_size"
-            android:layout_height="@dimen/drawable_icon_size"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/margin_horizontal_small"
-            android:layout_marginRight="@dimen/margin_horizontal_small"
-            />
-        <EditText
-            android:id="@+id/search"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:background="@color/bg_dark_lighter"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/search_hint"
-            android:padding="@dimen/padding_horizontal_small"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:layout_height="@dimen/search_layout_height"
+            android:background="@color/bg_dark_lighter">
 
-        <ImageView
-            android:src="@drawable/ic_baseline_account_circle_24"
-            android:layout_width="@dimen/user_icon_size"
-            android:layout_height="@dimen/user_icon_size"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/margin_horizontal_small"
-            />
+            <ImageView
+                android:layout_width="@dimen/drawable_icon_size"
+                android:layout_height="@dimen/drawable_icon_size"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_horizontal_small"
+                android:layout_marginRight="@dimen/margin_horizontal_small"
+                android:src="@drawable/ic_baseline_align_horizontal_right_24" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/bg_dark_lighter"
+                android:hint="@string/search_hint"
+                android:padding="@dimen/padding_horizontal_small"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray" />
+
+            <ImageView
+                android:layout_width="@dimen/user_icon_size"
+                android:layout_height="@dimen/user_icon_size"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/margin_horizontal_small"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view_main"
-        android:layout_marginRight="@dimen/margin_horizontal_medium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/margin_horizontal_medium"
         android:layout_marginTop="@dimen/margin_horizontal_medium"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
+        android:layout_marginRight="@dimen/margin_horizontal_medium" />
 
 </LinearLayout>

@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * Created by macos on 20,July,2022
  */
 public class MainActivityPresenter implements IMainActivityPresenter {
-    IMainActivityView iMainActivityView;
-    Database db;
+    private IMainActivityView iMainActivityView;
+    private Database db;
 
     public MainActivityPresenter(IMainActivityView iMainActivityView) {
         this.iMainActivityView = iMainActivityView;
@@ -42,15 +42,14 @@ public class MainActivityPresenter implements IMainActivityPresenter {
     @Override
     public void searchNotesByPresenter(ArrayList notes, String q) {
         //convert to note model
-        ArrayList<Note> mNotes = notes;
+        ArrayList<Note> myNotes = notes;
         ArrayList<Note> temp = new ArrayList<>();
-        mNotes.forEach((note) -> {
+        myNotes.forEach((note) -> {
             if (note.getTitle().contains(q) || note.getDescription().contains(q)) {
                 temp.add(note);
             }
         });
         iMainActivityView.updateSearchNotes(temp);
     }
-
 
 }

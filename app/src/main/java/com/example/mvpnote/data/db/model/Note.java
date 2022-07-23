@@ -2,6 +2,7 @@ package com.example.mvpnote.data.db.model;
 
 import static android.content.ContentValues.TAG;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.room.Entity;
@@ -47,7 +48,7 @@ public class Note {
     }
 
     public String getTitle() {
-        if (title.compareTo("") == 0) {
+        if (TextUtils.isEmpty(title)) {
             return "<No title>";
         }
         return title;
@@ -58,7 +59,7 @@ public class Note {
     }
 
     public String getDescription() {
-        if (description.compareTo("") == 0) {
+        if (TextUtils.isEmpty(description)) {
             return "<No desc>";
         }
         return description;

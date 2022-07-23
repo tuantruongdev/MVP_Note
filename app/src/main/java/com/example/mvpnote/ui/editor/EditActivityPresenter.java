@@ -16,9 +16,9 @@ import pl.aprilapps.easyphotopicker.MediaFile;
  * Created by macos on 20,July,2022
  */
 public class EditActivityPresenter implements IEditActivityPresenter {
-    IEditActivityView iEditActivityView;
-    Database db;
-    ArrayList<MediaFile> photos = new ArrayList<>();
+    private IEditActivityView iEditActivityView;
+    private Database db;
+    private ArrayList<MediaFile> photos = new ArrayList<>();
 
     public EditActivityPresenter(IEditActivityView iEditActivityView) {
         this.iEditActivityView = iEditActivityView;

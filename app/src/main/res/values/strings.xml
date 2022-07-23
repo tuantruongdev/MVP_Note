@@ -2,4 +2,8 @@
     <string name="app_name">MVP Note</string>
     <string name="app_title">Notes</string>
     <string name="search_hint">Search your notes</string>
+
+    <string name="tag_program">coding</string>
+    <string name="tag_note">note</string>
+    <string name="tag_daily">daily</string>
 </resources>

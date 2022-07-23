@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_dark"
     android:orientation="vertical"
     tools:context=".ui.editor.EditActivity">
@@ -27,12 +27,12 @@
             app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24"
             app:tint="@color/white" />
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true">
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/removeNote"
                 android:layout_width="wrap_content"
@@ -52,13 +52,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/margin_medium"
-
                 android:backgroundTint="@color/bg_dark"
                 app:borderWidth="0dp"
                 app:fabSize="mini"
                 app:rippleColor="@color/faded_gray"
                 app:srcCompat="@drawable/ic_baseline_image_24"
                 app:tint="@color/white" />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/done"
                 android:layout_width="wrap_content"
@@ -75,51 +75,50 @@
         </LinearLayout>
     </RelativeLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/margin_large"
             android:layout_marginRight="@dimen/margin_large"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:orientation="vertical">
+
             <EditText
-                android:textStyle="bold"
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/bg_dark"
                 android:hint="Title here"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"
                 android:textSize="@dimen/edit_text_title_size"
-                android:background="@color/bg_dark"
-                />
-                <ImageView
-                    android:layout_gravity="center_horizontal"
-                    android:adjustViewBounds="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                android:textStyle="bold" />
 
-                    android:id="@+id/noteImg"
-                    />
+            <ImageView
+                android:id="@+id/noteImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true" />
+
             <EditText
                 android:id="@+id/desc"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:gravity="start"
-                android:lines="30"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@color/bg_dark"
+                android:gravity="start"
                 android:hint="description here"
+                android:lines="30"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"
-                android:textSize="@dimen/edit_text_desc_size"
-                android:background="@color/bg_dark"
-                />
+                android:textSize="@dimen/edit_text_desc_size" />
 
         </LinearLayout>
-        </ScrollView>
-
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="wrap_content"
